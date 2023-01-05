@@ -1,0 +1,20 @@
+ public static int alt_interSectionPoint(Linkedlist l1, Linkedlist l2){
+        Node n1 = l1.head;
+        Node n2 = l2.head;
+        int diff = l1.size - l2.size;
+        if(l1.size > l2.size){
+            for(int i = 0; i < diff; i++){
+                n1 = n1.next;
+            }
+        }
+        else{
+            for(int j = 0; j < diff; j++){
+                n2 = n2.next;
+            }
+        }
+        while(n1.data != n2.data){
+            n1 = n1.next;
+            n2 = n2.next;
+        }
+        return n1.data;
+ }
