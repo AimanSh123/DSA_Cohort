@@ -1,0 +1,12 @@
+ public static int kthFromLast(Linkedlist list, int k){
+        Node fast = list.head;
+        Node slow = list.head;
+        for(int i = 0; i < k; i++){
+            fast = fast.next;
+        }
+        while(fast.next != null){
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return slow.data;
+    }
