@@ -1,0 +1,37 @@
+class Solution {
+    public ListNode reverse(ListNode head){
+        if(head == null || head.next == null){
+            return head;
+        }
+        ListNode curr = head; ListNode prev = null;
+        while(curr != null){ ListNode node = curr.next;
+            curr.next = prev; prev = curr; curr = node;
+        }
+        return prev;
+    }
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        if(l1 == null){
+               return l2;
+        }
+        if(l2 == null){
+               return l1;
+        }
+        ListNode result = new ListNode(-1);
+        ListNode answer = result;
+        ListNode rev1 = reverse(l1);
+        ListNode rev2 = reverse(l2); int carry = 0;
+        while(rev1 != null || rev2 != null){
+              int sum = (rev1!=null?rev1.val:0)+(rev2!=null?rev2.val:0)+carry;
+              ListNode newone = new ListNode(sum % 10);
+              result.next = newone; result = result.next;
+              carry = sum / 10; 
+              if(rev1!=null){rev1 = rev1.next;}
+              if(rev2!=null){rev2 = rev2.next;}
+        }
+        if(carry != 0){
+            ListNode newone = new ListNode(carry);
+            result.next = newone; result = result.next; 
+        }
+        return reverse(answer.next);        
+    }
+}
