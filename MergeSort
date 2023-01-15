@@ -12,6 +12,15 @@ public static <Integer> Linkedlist mergeSort( Node lo, Node hi){
         return answer;
 
 }
+public static Node middleNode(Node head, Node tail){
+        Node slower = head;
+        Node faster = head;
+        while(faster != tail && faster.next != tail){
+            slower = slower.next;
+            faster = faster.next.next;
+        }
+        return slower;
+}
 public static <Integer> Linkedlist mergeTwoSorted(Linkedlist ll1, Linkedlist ll2){
         Linkedlist mergeSorted = new Linkedlist <> ();
         Node node1 = ll1.head;  Node node2 = ll2.head;
