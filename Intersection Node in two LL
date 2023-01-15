@@ -1,0 +1,27 @@
+ public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode temp1 = headA;
+        while(temp1.next != null){
+            temp1 = temp1.next;
+        }
+        temp1.next = headB;
+        ListNode temp2 = temp1;
+        ListNode slow = headA; ListNode fast = headA;
+        while(fast != null && fast.next != null){
+            slow = slow.next; fast = fast.next.next;
+            if(slow == fast){
+                break;
+            }
+        }
+        if(fast == null || fast.next == null){
+            temp2.next = null;
+            return null;
+        }
+        slow = headA;
+        while(slow != fast){
+            slow = slow.next; fast = fast.next;
+        }
+        
+        temp2.next = null;
+        return slow;
+
+    }
