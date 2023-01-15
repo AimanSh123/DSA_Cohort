@@ -1,0 +1,19 @@
+   public ListNode oddEvenList(ListNode head) {
+        if(head == null){
+            return null;
+        }
+        ListNode temp = head;
+        ListNode odd = new ListNode(-1); ListNode even = new ListNode(-1);
+        ListNode dummyodd = odd; ListNode dummyeven = even; int count = 1;
+        while(temp != null){
+            if(count % 2 == 1){
+               odd.next = temp; odd = odd.next;
+            }
+            else{
+               even.next = temp; even = even.next;
+            } temp = temp.next;  count ++;
+        }
+        dummyeven = dummyeven.next;
+        odd.next = dummyeven;  even.next = null;
+        return dummyodd.next;
+    }
