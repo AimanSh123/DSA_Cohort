@@ -1,0 +1,16 @@
+ public static ListNode mergeKLists2(ListNode[] lists) {
+        if(lists.length == 0) return null;
+        if(lists.length == 1) return lists[0];
+        ListNode dummy = new ListNode(-1); ListNode temp = dummy;
+        PriorityQueue<ListNode> pq = new PriorityQueue<>((a,b)->{
+            return a.val - b.val;
+        });
+        for(ListNode l : lists){if(l != null)pq.add(l);}
+        while(pq.size() != 0){
+            ListNode node = pq.remove();
+            temp.next = node; node = node.next;
+            temp = temp.next;
+            if(node != null){pq.add(node);}
+        }
+        return dummy.next;
+}
