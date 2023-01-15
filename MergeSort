@@ -1,31 +1,33 @@
-public static int [] mergeSort(int [] array, int start, int end){
-        if(start > end){ return new int [0];}
-        if(start == end){
-            int [] result = new int [1]; result[0] = array[start];
-            return result;
+public static <Integer> Linkedlist mergeSort( Node lo, Node hi){
+
+        if(lo == hi){
+         Linkedlist br = new Linkedlist <>();
+         br.addLast(lo.data);
+         return br;
         }
-        int mid = (start + end)/2;
-        int [] l1 = mergeSort(array, start, mid);
-        int [] l2 = mergeSort(array, mid + 1, end);
-        return mergeTwo(l1, l2);
-    }
-    public static int [] mergeTwo(int [] l1, int [] l2){
-        int i = 0; int j = 0;
-        int [] result = new int [l1.length + l2.length];  int k = 0;
-        while(i != l1.length && j != l2.length){
-            if(l1[i] > l2[j]){
-               result[k] = l2[j]; j++;
+        Node middle = middleNode( lo, hi);
+        Linkedlist first = mergeSort( lo, middle);
+        Linkedlist second = mergeSort( middle.next, hi);
+        Linkedlist answer = mergeTwoSorted(first, second);
+        return answer;
+
+}
+public static <Integer> Linkedlist mergeTwoSorted(Linkedlist ll1, Linkedlist ll2){
+        Linkedlist mergeSorted = new Linkedlist <> ();
+        Node node1 = ll1.head;  Node node2 = ll2.head;
+        while(node1 != null || node2 != null){
+            if(node2 == null){
+                mergeSorted.addLast(node1.data); node1 = node1.next;
+            }
+            else if(node1 == null){
+                mergeSorted.addLast(node2.data); node2 = node2.next;
+            }
+            else if(node1.data < node2.data){
+                mergeSorted.addLast(node1.data); node1 = node1.next;
             }
             else{
-                result[k] = l1[i]; i++;
+                mergeSorted.addLast(node2.data); node2 = node2.next;
             }
-            k++;
         }
-        while(i != l1.length){
-            result[k] = l1[i]; i++; k++;
-        }
-        while(j != l2.length){
-            result[k] = l2[j]; j++; k++;
-        }
-        return result;
-    }
+        return mergeSorted;
+}
