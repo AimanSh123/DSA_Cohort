@@ -1,0 +1,24 @@
+public static ListNode subtract(ListNode l1, ListNode l2){
+        if(l2 == null){ return l1; }
+        if(l1==null){l2.val = -l2.val; return l2;}
+        ListNode rev1 = reverse(l1);   ListNode rev2 = reverse(l2);
+        int bore = 0;
+        ListNode result = new ListNode(-1);
+        ListNode answer = result;
+        while(rev1 != null || rev2 != null){
+            int val = 0;
+            if((rev1!=null?rev1.val:0)<(rev2!=null?rev2.val:0)){
+                val = (rev1!=null?rev1.val:0) + 10 - (rev2!=null?rev2.val:0) - bore; bore = 1;  // we can also write rev1.val as
+                // rev1 will be greater than rev2
+            }
+            else{
+                val = (rev1!=null?rev1.val:0) - (rev2!=null?rev2.val:0) - bore; bore = 0;
+            }
+            ListNode newone = new ListNode(val);
+            result.next = newone; result = result.next;
+            if(rev1!=null) rev1 = rev1.next;
+            if(rev2!=null)rev2 = rev2.next;
+        }
+        return reverse(answer.next);
+
+    }
