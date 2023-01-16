@@ -1,0 +1,40 @@
+   if(head == null || head.next == null){
+            return null;
+        }
+        int length = length(head);
+        System.out.println("stuck ");
+        if(length < k){
+            return head;
+        }int rest = length; ListNode result = new ListNode();
+        ListNode temp = head; ListNode prev = temp; int helper = 0;
+        ListNode node = new ListNode(); ListNode first = new ListNode();
+        while(temp != null){
+//            System.out.println(temp.val);
+            int count = k;  ListNode second = temp;  prev = temp; temp = temp.next;
+            if(rest >= k){                     ListNode pehle = prev;
+                helper ++;
+                while(count != 1){
+                    ListNode last = temp; temp = temp.next;
+                    pehle.next = temp;
+                    node = addAtfirst(last, prev);   count--; prev = node;
+                    System.out.println("here");
+                }
+                if(helper == 1){
+                    System.out.println("temp val is " + temp.val);
+                    System.out.println("second val is " + second.val);
+                    second.next = temp;
+                    result = prev; first = second;
+                }
+                else{
+                    first.next = prev; first = second;
+                }
+                rest -= k;
+                System.out.println("came here");
+            }
+            else{
+                System.out.println("prev " + prev.val);
+                first.next = prev;
+                break;
+            }
+        }
+        return result;
