@@ -1,0 +1,27 @@
+ public static ListNode segregate012(ListNode head) {
+        if(head == null || head.next == null) {
+            return head;
+        }
+        ListNode temp = head; ListNode dum0 = new ListNode(-1); ListNode h0 = dum0;
+        ListNode dum1 = new ListNode(-1); ListNode dum2 = new ListNode(-1);
+        ListNode h2 = dum2; ListNode h1 = dum1;
+        while(temp != null){
+            System.out.println("temp value is " + temp.val);
+            if(temp.val == 1){
+                System.out.println("temp value is 1" + temp.val);
+                dum1.next = temp; temp = temp.next; dum1 = dum1.next;
+            }
+            else if(temp.val == 0){
+                System.out.println("temp value is 0" + temp.val);
+                dum0.next = temp; temp = temp.next; dum0 = dum0.next;
+            }
+            else{
+                System.out.println("temp value is 2" + temp.val);
+                dum2.next = temp; temp = temp.next; dum2 = dum2.next;
+            }
+        }
+        dum1.next = h2.next;
+        dum0.next = h1.next;
+        dum2.next = null;
+        return h0.next;
+    }
