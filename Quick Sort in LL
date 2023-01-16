@@ -1,0 +1,80 @@
+class Solution {
+    public ListNode[] partition(ListNode head, int pivotIndex){
+        if(head == null){
+            return new ListNode [0];
+        } ListNode pivotNode = head;
+        while(pivotIndex != 0){
+            pivotIndex--; pivotNode = pivotNode.next; 
+        }
+        int pivot = pivotNode.val;
+        ListNode dumm_bef = new ListNode(-1);
+        ListNode dumm_aft = new ListNode(-1);
+        ListNode temp = head; ListNode bh = dumm_bef;
+        ListNode ah = dumm_aft;
+        while(temp != null){ 
+            if(temp != pivotNode){
+                if(temp.val > pivot){
+                    dumm_aft.next = temp; dumm_aft = dumm_aft.next;
+                }
+                else{
+                    dumm_bef.next = temp; dumm_bef = dumm_bef.next;
+                }
+            }
+            temp = temp.next; 
+        }
+        dumm_bef.next = null; dumm_aft.next = null; pivotNode.next = null;
+        ListNode [] ans = {bh.next, pivotNode, ah.next};
+        return ans; 
+    }
+    public int length(ListNode head){
+        if(head == null){
+            return 0;
+        } ListNode temp = head;
+        int count = 0;
+        while(temp != null){
+            count++; temp = temp.next;
+        }
+        return count;
+    }
+    public ListNode sortList(ListNode head){
+        if(head == null || head.next == null){
+            return head;
+        }
+        ListNode []answer = sortListHelp(head);
+        return answer[0];
+    }
+    public ListNode[] sortListHelp(ListNode head) {
+        if(head == null || head.next == null){
+            ListNode []ans = {head, head};
+            return ans;
+        }
+        int length = length(head);
+        int pivotIdx = length/2;
+        ListNode [] answer = partition(head, pivotIdx);
+        ListNode [] leftSort = sortListHelp(answer[0]);
+        ListNode [] rightSort = sortListHelp(answer[2]);
+        return mergeSort(leftSort, answer[1],rightSort);
+    }
+    public ListNode[] mergeSort(ListNode []left, ListNode pivot, ListNode [] right){
+        ListNode head; ListNode tail; 
+        if(left[0] != null && right[0] != null){
+            left[1].next = pivot;
+            pivot.next = right[0];
+            head = left[0]; tail = right[1];
+        }
+        else if(left[0] == null && right[0] != null){
+            pivot.next = right[0];
+            head = pivot; tail = right[1];
+        }
+        else if(left[0] != null && right[0] == null){
+            left[1].next = pivot;
+            head = left[0]; tail = pivot;
+        }
+        else{
+            head = tail = pivot;
+        }
+        ListNode [] ans = {head,tail};
+        return ans;
+    }
+
+}
