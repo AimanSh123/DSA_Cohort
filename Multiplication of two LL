@@ -12,11 +12,6 @@
             }
             ans = reverse(ans);
             ListNode help = addTwoNumbers3(ans, result);
-            result = help;
-            while(help != null){
-                System.out.print(help.val); help = help.next;
-            }
-            System.out.println();
             h2 = h2.next; count ++;
         }
         return result;
