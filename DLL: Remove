@@ -101,4 +101,37 @@ public int removeLast(){
             size--; curr.prev = curr.next = null;
             return curr.val;
         }
+           public int removeNode(int idx){
+            if(head == null || idx >= size || idx < 0){
+                return -1;
+            }
+            int i = 0; Node temp = head;
+            while(i != idx){
+                temp = temp.next; i++;
+            }
+            if(temp == head){
+                Node forw = temp.next;
+                if(forw != null){
+                    forw.prev = null;
+                    head = temp.next;
+                }
+                else{
+                    head = null;
+                }
+
+            }
+            else if(temp == tail){
+                 Node prev = temp.prev;
+                 prev.next = null;
+                 tail = prev;
+            }
+            else{
+                Node prev = temp.prev;
+                prev.next = temp.next;
+                temp.next.prev = prev;
+            }
+            size--;
+            temp.prev = temp.next = null;
+            return temp.val;
+        }
    
