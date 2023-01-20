@@ -1,0 +1,22 @@
+public void removeFirst(){
+            if(head == null){
+                return;
+            }
+            head.next.prev = null;
+            head = head.next;
+}
+public void removeLast(){
+            if(head == null || head.next == null){
+                tail = head = null;
+                return;
+            }
+            Node temp = this.head;
+            while(temp.next != null){
+                temp = temp.next;
+            }
+            Node previous = temp.prev;
+            previous.next = null;
+            tail = previous;
+        }
+}
+        
