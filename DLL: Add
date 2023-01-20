@@ -1,0 +1,46 @@
+  public  Node addFirst(int value) {
+            Node toAdd = new Node(value, null, null);
+            if(this.head == null){
+                System.out.println("this part is executed ");
+                this.head = toAdd;
+                return toAdd;
+            }
+            toAdd.next = this.head; this.head.prev = toAdd;
+            return toAdd;
+ }
+ public void addAt(int idx, int data){
+            if(idx < 0 || idx > size){
+                return;
+            }
+            if(idx == 0){
+                addFirst(data);
+            }
+            else if(idx == size){
+                addLast(data);
+            }
+            else{
+                Node node = new Node(data, null, null);
+                Node temp = head; int i = 0;
+                while(temp != null && i < idx){
+                    temp = temp.next; i++;
+                }
+                Node previous = temp.prev;
+                previous.next = node; node.prev = previous;
+                node.next = temp; temp.prev = node;
+                size++;
+ }
+  public void addLast(int val){
+            this.size ++;
+            Node addLast = new Node(val, null, null);
+            if(head == null){
+                tail = head = addLast;
+            } Node temp = tail;
+//            while(temp.next != null){
+//                temp = temp.next;
+//            }
+            temp.next = addLast;
+            addLast.prev = temp;
+            tail = addLast;
+}
+ 
+        
