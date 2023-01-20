@@ -59,4 +59,46 @@ public int removeLast(){
             previous.next = nextOne;
             return temp.val;
         }
-        
+          public int removeAfter(int idx){
+            if(head == null || idx >= size - 1 || idx < 0){
+                return -1;
+            }
+            int i = 0; Node temp = head;
+            while(i != idx){
+                temp = temp.next; i ++;
+            }
+            int value = 0; value = temp.next.val;
+            if(temp.next.next != null) {
+                Node previous = temp.next.next;
+                temp.next = temp.next.next;
+                previous.prev = temp;
+            }
+            else{
+                temp.next.prev = null;
+                temp.next = null;
+                tail = temp;
+            }
+            size --;
+            return value;
+        }
+    public int removeBefore(int idx){
+            if(head == null || idx <= 0 || idx >= size){
+                return -1;
+            }
+            int i = 0; Node temp = head;
+            while(i != idx){
+                temp = temp.next; i++;
+            }
+            Node curr = temp.prev;
+            if(curr.prev == null){
+                temp.prev = null;
+                head = temp;
+            }
+            else{
+                  curr.prev.next = temp;
+                  temp.prev = curr.prev;
+            }
+            size--; curr.prev = curr.next = null;
+            return curr.val;
+        }
+   
