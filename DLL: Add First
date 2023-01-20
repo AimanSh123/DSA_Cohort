@@ -1,0 +1,11 @@
+  public  Node addFirst(int value) {
+            Node toAdd = new Node(value, null, null);
+            if(this.head == null){
+                System.out.println("this part is executed ");
+                this.head = toAdd;
+                return toAdd;
+            }
+            toAdd.next = this.head; this.head.prev = toAdd;
+            return toAdd;
+        }
+        
