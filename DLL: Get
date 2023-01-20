@@ -19,3 +19,13 @@ public boolean isEmpty(){
             }
             return tail.val;
  }
+ public int getAt(int idx){
+            if(size == 0 || idx < 0 || idx >= size){
+                return -1;
+            }
+            Node temp = head; int i = 0;
+            while(temp != null && i < idx){
+                temp = temp.next; i++;
+            }
+            return temp.val;
+ }
