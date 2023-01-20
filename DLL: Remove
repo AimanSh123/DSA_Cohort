@@ -1,22 +1,62 @@
-public void removeFirst(){
+public int removeFirst(){
             if(head == null){
-                return;
+                return -1;
+            }
+            int val = head.val; size--;
+              if(head.next == null){
+                head = null;
+                return val;
             }
             head.next.prev = null;
             head = head.next;
+            return val;
 }
-public void removeLast(){
-            if(head == null || head.next == null){
+public int removeLast(){
+            if(head == null){
                 tail = head = null;
-                return;
+                return -1;
+            }
+            size--;
+            if( head.next == null){
+                tail = head = null;
+                return -1;
             }
             Node temp = this.head;
             while(temp.next != null){
                 temp = temp.next;
             }
+            int val = temp.val;
             Node previous = temp.prev;
             previous.next = null;
             tail = previous;
+            return val;
         }
 }
+   public int removeAt(int idx){
+            if(head == null || idx >= size || idx < 0){
+                return -1;
+            } 
+            if(head.next == null){
+            size--;
+                Node temp = head;
+                head = null;
+                return temp.val;
+            }
+            else if(idx == 0){
+                      return removeFirst();
+            } 
+            else if(idx == size - 1){
+                      return removeLast();
+            }
+            size--;
+            Node temp = head; int i = 0;
+            while(temp != null && i < idx){
+                temp = temp.next; i++;
+            }
+            Node nextOne = temp.next;
+            Node previous = temp.prev;
+            temp.next = null; temp.prev = null;
+            previous.next = nextOne;
+            return temp.val;
+        }
         
