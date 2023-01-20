@@ -42,5 +42,34 @@
             addLast.prev = temp;
             tail = addLast;
 }
- 
+   public void addBeforeNode(int idx, int val){
+            if(head == null && idx != 0 || idx >= size || idx < 0){
+                return;
+            }
+
+            Node addBefore = new Node(val ,null, null);
+            if(head == null && idx == 0){
+                head = addBefore; this.size ++;
+                return;
+            }
+            if(idx == 0){
+               Node help =  addFirst(val);
+               head = help;
+                return;
+            } this.size ++;
+            Node temp = head; int i = 0;
+            while(i != idx){
+                temp =temp.next; i++;
+            }
+            addBefore.next = temp;
+            if(idx != 0) {
+                Node help = temp.prev;
+                help.next = addBefore;
+                addBefore.prev = help;
+            }
+            temp.prev = addBefore;
+//           if(idx == 0){
+//               head = addBefore;
+//           }
+ }
         
