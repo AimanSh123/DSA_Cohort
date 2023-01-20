@@ -1,0 +1,27 @@
+  public void displayforw(){
+            Node temp = head;
+            String sol = "[ ";
+            while(temp != null){
+                  sol += temp.val;
+                if(temp.next != null){
+                    sol += " -> ";
+                }
+                temp = temp.next;
+            }
+            sol += " ]";
+            System.out.println(sol);
+        }
+        public void displayback(){
+            Node temp = tail;
+            String sol = "[ ";
+            while(temp != null){
+                sol += temp.val;
+                if(temp.prev != null){
+                    sol += " <- ";
+                }
+                temp = temp.prev;
+            }
+            sol += " ]";
+            System.out.println(sol);
+        }
+    }
