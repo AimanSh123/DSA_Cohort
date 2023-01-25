@@ -62,5 +62,49 @@
         toh(n-1,t3,t2,t1);
 
     }
+    public static void print(int [] a, int index){
+
+        if(index == a.length ){
+            return;
+        }
+        System.out.println(a[index]);
+        print(a, index + 1);
+
+    }
+
+    public static void print_reverse(int [] a, int index){
+
+        if(index == -1 ){
+            return;
+        }
+        System.out.println(a[index]);
+        print_reverse(a, index - 1);
+
+    }
+    public static int maxofArray(int [] a, int index){
+        if(index == a.length - 1){
+            return a[index];
+        }
+        int max_of_small = maxofArray(a, index + 1);
+        if(max_of_small > a[index]){
+            return max_of_small;
+        }
+        else{
+            return a[index];
+        }
+    }
+     public static int first_index(int [] a, int index, int x){
+         if (index == a.length){
+             return -1;
+         }
+        int value = first_index(a, index + 1, x);
+        if(a[index] == x){
+             return index;
+        }
+        else{
+            return value;
+        }
+    }
+   
     
    
