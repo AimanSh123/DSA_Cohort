@@ -218,4 +218,26 @@
         }
     }
     
-    
+       public static void printSubSetTok(int [] input, int idx, int k,int sumreached, int [] output){
+        if(sumreached > k){
+            return;
+        }
+        if(k == sumreached){
+            for(int i = 0; i < output.length; i++){
+                System.out.print(output[i] + " ");
+            }
+            System.out.println();
+            return;
+        }
+        int [] newoutput = new int [output.length + 1];
+        int i = 0;
+        for(i = 0; i < output.length; i++){
+            newoutput[i] = output[i];
+        }
+        for(int j = idx; j < input.length ;j++){
+            newoutput[i] = input[j];
+            printSubSetTok(input, j + 1, k, (sumreached + input[j]), newoutput);
+        }
+
+    }
+ 
