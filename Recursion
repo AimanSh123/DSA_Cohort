@@ -154,15 +154,29 @@
     }
   
    
-     public static void getMazePath2(int ss, int sd, int ds, int dd, String path){
+     public static void getMazePath(int ss, int sd, int ds, int dd, String path){
         if(ss > ds || sd > dd){
             return;
         }
         if(ss == ds && sd == dd){
             System.out.println(path);
         }
-        getMazePath2(ss + 1, sd, ds, dd, path + "side ");
-        getMazePath2(ss, sd + 1, ds, dd, path + "down ");
+        getMazePath(ss + 1, sd, ds, dd, path + "side ");
+        getMazePath(ss, sd + 1, ds, dd, path + "down ");
 
     }
-   
+     public static void getMazePathJump(int ss, int sd, int ds, int dd, String path){
+        if(ss > ds || sd > dd){
+            return;
+        }
+        if(ss == ds && ds == sd){
+//            System.out.println("source side is " + ss + "source down is " + sd);
+            System.out.println(path + "  ");
+            return;
+        }
+        getMazePathJump(ss + 1, sd, ds, dd, path + "side ");
+        getMazePathJump(ss + 2, sd, ds, dd, path + "side side ");
+        getMazePathJump(ss, sd + 1, ds, dd, path + "down ");
+        getMazePathJump(ss, sd + 2, ds, dd, path + "down down");
+
+    }
