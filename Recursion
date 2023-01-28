@@ -154,5 +154,15 @@
     }
   
    
-    
+     public static void getMazePath2(int ss, int sd, int ds, int dd, String path){
+        if(ss > ds || sd > dd){
+            return;
+        }
+        if(ss == ds && sd == dd){
+            System.out.println(path);
+        }
+        getMazePath2(ss + 1, sd, ds, dd, path + "side ");
+        getMazePath2(ss, sd + 1, ds, dd, path + "down ");
+
+    }
    
