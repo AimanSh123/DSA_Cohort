@@ -180,3 +180,30 @@
         getMazePathJump(ss, sd + 2, ds, dd, path + "down down");
 
     }
+    public static List<String> getMazePathJump3(int sr, int sc, int dr, int dc){
+        List<String> result = new ArrayList<>();
+        if(sr == dr && sc == dc){
+            result.add("");
+            return result;
+        }
+        for(int i = 1; i <= dr - sr; i++){
+            List<String> hpath = getMazePathJump3(sr + i, sc, dr, dc);
+           for(String el : hpath){
+               result.add(el + 'v' + i);
+           }
+        }
+        for(int i = 1; i <= dc - sc; i++){
+            List<String> vpath = getMazePathJump3(sr , sc + i, dr, dc);
+            for(String el : vpath){
+                result.add(el + 'h' + i);
+            }
+        }
+        for(int i = 1; i <= dr - sr && i <= dc - sc; i++){
+            List<String> dpath = getMazePathJump3(sr + i, sc + i, dr, dc);
+            for(String el : dpath){
+                result.add(el + 'd' + i);
+            }
+        }
+        return result;
+    }
+    
