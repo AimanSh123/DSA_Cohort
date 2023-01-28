@@ -241,3 +241,21 @@
 
     }
  
+ public static void printEncode(String str, String res){
+        if(str == ""){
+            System.out.println(res);
+            return;
+        }
+        int ch = str.charAt(0) - '0';
+        int val = (ch + 'a' - 1);
+        char c = (char) (val);
+        printEncode(str.substring(1), res + c);
+        if(str.length() >= 2) {
+            int second = Integer.parseInt(str.substring(0,2));
+            if(second > 26){
+                return;
+            }
+            char secondch = (char) (second + 'a' - 1);
+            printEncode(str.substring(2), res + secondch);
+        }
+    }
