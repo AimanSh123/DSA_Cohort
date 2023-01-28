@@ -259,3 +259,19 @@
             printEncode(str.substring(2), res + secondch);
         }
     }
+      public static void floodFill(int[][] maze, int sr, int sc, String asf, boolean [][] visited){
+//        System.out.println("this part " + sr + "  " + sc);
+        if(sr >= maze.length || sc < 0 || sr < 0 || sc >= maze[0].length || visited[sr][sc] == true || maze[sr][sc] == 1 ){
+            return;
+        }
+        if(sr == maze.length - 1 && sc == maze[0].length - 1){
+            System.out.println(asf);
+            return;
+        }
+        visited[sr][sc] = true;
+        floodFill(maze, sr, sc - 1, asf + "left ", visited);
+        floodFill(maze, sr, sc + 1, asf + "right ",visited);
+        floodFill(maze,sr + 1, sc,asf + "down ", visited);
+        floodFill(maze, sr - 1, sc, asf + "up ", visited);
+    }
+
