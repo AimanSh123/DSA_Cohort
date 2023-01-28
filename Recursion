@@ -296,4 +296,38 @@ public static void knighttour(int [][] board, int sr, int sc, int upcomemove){
         knighttour(board, sr + 2, sc - 1, upcomemove);
         board[sr][sc] = 0;
     }
+    public static void printNQueen(int [][] board, int sr, String ans){
+        if(sr == board.length){
+            System.out.println(ans + ".");
+            return;
+        }
+        for(int i = 0; i < board[0].length; i++){
+            if(queenSafe(board, sr, i)){
+                board[sr][i] = 1;
+                printNQueen(board, sr + 1, ans + sr + "-" + i + ", ");
+                board[sr][i] = 0;
+            }
+        }
+    }
+    public static boolean queenSafe(int [][] board, int sr, int sc){
+        int j = sc;
+        for(int i = 0; i < sr; i++){
+            if(board[i][j] == 1){
+                return false;
+            }
+        }
+        System.out.println(sr + " " + sc);
+        for(int k = sr - 1, l = sc - 1; k >= 0 && l >= 0;l--, k--){
+            if(board[k][l] == 1){
+                return false;
+            }
+        }
+        for(int k = sr - 1, l = sc + 1; k >= 0 && l < board[0].length;l++, k--){
+            if(board[k][l] == 1){
+                return false;
+            }
+        }
+        return true;
+    }
+    
    
