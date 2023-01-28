@@ -274,4 +274,26 @@
         floodFill(maze,sr + 1, sc,asf + "down ", visited);
         floodFill(maze, sr - 1, sc, asf + "up ", visited);
     }
-
+public static void knighttour(int [][] board, int sr, int sc, int upcomemove){
+        if(sr >= board.length || sr < 0 || sc >= board[0].length || sc < 0 || board[sr][sc] != 0){
+            return;
+        }
+        if(upcomemove == board.length * board[0].length){
+            board[sr][sc] = upcomemove;
+            display(board);
+            board[sr][sc] = 0;
+            return;
+        }
+        board[sr][sc] = upcomemove;
+        upcomemove ++;
+        knighttour(board, sr - 2, sc + 1, upcomemove);
+        knighttour(board, sr - 1, sc + 2, upcomemove);
+        knighttour(board, sr + 1, sc + 2, upcomemove);
+        knighttour(board, sr + 2, sc + 1, upcomemove);
+        knighttour(board, sr - 2, sc - 1, upcomemove);
+        knighttour(board, sr - 1, sc - 2, upcomemove);
+        knighttour(board, sr + 1, sc - 2, upcomemove);
+        knighttour(board, sr + 2, sc - 1, upcomemove);
+        board[sr][sc] = 0;
+    }
+   
