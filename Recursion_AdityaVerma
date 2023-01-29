@@ -12,3 +12,37 @@
         return height + 1;
     }
    
+
+public int[] sortArray(int[] nums) {
+        if(nums.length == 1){
+            return nums;
+        }
+        int [] answer = sortHelp(nums, nums.length - 1);
+        return answer;
+    }
+    public int[] sortHelp(int [] nums, int index){
+        if(index == 0){
+            return nums;
+        }
+        int remain = nums[index];
+        int [] answer = sortHelp(nums, index - 1);
+        insert(answer, remain, index -1);
+        return answer;
+    }
+    public void insert(int [] answer, int remain, int index){
+        if(index < 0 || index >= answer.length - 1 || answer[index] < remain){
+            return;
+        }
+        int i = 0;
+        for(i = index; i >= 0; i--){
+            if(answer[i] <= remain){
+                break;
+            }
+            else{
+                answer[i+1] = answer[i];
+            }
+        }
+        answer[i + 1] =  remain;
+
+    }
+    
