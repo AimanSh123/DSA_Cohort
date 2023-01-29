@@ -1,0 +1,14 @@
+ public static int height(Node root){
+        if(root == null){
+            return 0;
+        }
+        int height = 0;
+        for(Node child : root.children){
+            int ht = height(child);
+            if(ht > height){
+                height = ht;
+            }
+        }
+        return height + 1;
+    }
+   
