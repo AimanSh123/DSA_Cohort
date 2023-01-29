@@ -191,5 +191,28 @@ while(!ans.empty()){
     cout<<ans.top()<<endl;
     ans.pop();
 }
- 
+//permutation 
+void permutation(string s,string output){
+    if(s.length()==0){
+        cout<<output<<endl;
+        return;
+    }
+    string op1=output;
+    string op2=output;
+    op1.push_back('_');
+    op1.push_back(s[0]);
+    op2.push_back(s[0]);
+    s.erase( 0,1);
+    permutation(s,op1);
+    permutation(s,op2);
+}
+int main()
+{
+   string s;
+   cin>>s;
+   string output=" ";
+   output.push_back(s[0]);
+   s.erase( 0,1);
+   permutation(s,output);
+} 
     
